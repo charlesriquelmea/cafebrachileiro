@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Café Brachileiro — Cold Brew Delivery</title>
+  <meta name="description"
+    content="Cold Brew Coffee entregue na sua porta. Café especial gelado, feito com grãos selecionados do Brasil. Peça agora e receba em minutos." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --font-display: 'Bebas Neue', Impact, sans-serif;
+      --font-body: 'Nunito', 'Helvetica Neue', sans-serif;
+      --verde: #009c3b;
+      --verde-dark: #007a2f;
+      --azul: #003580;
+      --vermelho: #D52B1E;
+      --amarelo: #FEDF00;
+      --cafe: #6b3a1f;
+      --cafe-mid: #8b4a25;
+      --cafe-light: #c8832a;
+      --bg: #0d0906;
+      --surface: #18100a;
+      --surface-2: #221610;
+      --surface-3: #2e1e12;
+      --border: rgba(255, 215, 100, 0.12);
+      --divider: rgba(255, 215, 100, 0.07);
+      --text: #f5ece0;
+      --text-muted: #c0a87a;
+      --text-faint: #7a5c3a;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.5);
+      --shadow-md: 0 8px 28px rgba(0, 0, 0, 0.6);
+      --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.7);
+      --transition: 200ms cubic-bezier(0.16, 1, 0.3, 1);
+      --radius: 0.625rem;
+      --radius-lg: 1rem;
+      --radius-full: 9999px;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: none;
+    }
+
+    body {
+      min-height: 100dvh;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      background: var(--bg);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button {
+      cursor: pointer;
+      border: none;
+      background: none;
+      font: inherit;
+      color: inherit;
+    }
+
+    input {
+      font: inherit;
+      color: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 90% 60% at 50% -5%, rgba(0, 156, 59, 0.12) 0%, transparent 65%),
+        radial-gradient(ellipse 50% 40% at 90% 80%, rgba(107, 58, 31, 0.20) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 35% at 10% 90%, rgba(0, 53, 128, 0.12) 0%, transparent 55%);
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px 180px;
+    }
+
+    .page-wrap {
+      position: relative;
+      z-index: 1;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem 1rem 4rem;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 0 2rem;
+    }
+
+    .logo-area {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .logo-wordmark {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 6vw, 2.6rem);
+      letter-spacing: 0.06em;
+      line-height: 1;
+    }
+
+    .logo-wordmark .c1 {
+      color: var(--verde);
+    }
+
+    .logo-wordmark .c2 {
+      color: var(--vermelho);
+    }
+
+    /* ← RED not orange */
+    .logo-wordmark .c3 {
+      color: var(--amarelo);
+    }
+
+    .logo-wordmark .c4 {
+      color: var(--verde);
+    }
+
+    .logo-wordmark .c5 {
+      color: var(--azul);
+    }
+
+    .logo-wordmark .c6 {
+      color: var(--vermelho);
+    }
+
+    /* ← RED not orange */
+    .logo-tagline {
+      font-family: var(--font-display);
+      font-size: clamp(0.7rem, 2.2vw, 0.9rem);
+      letter-spacing: 0.35em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+    }
+
+    /* ─── LAUNCH BANNER ─── */
+    .launch-banner {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(213, 43, 30, 0.12);
+      border: 1px solid rgba(213, 43, 30, 0.4);
+      border-radius: var(--radius-full);
+      padding: 0.35rem 1.1rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ff7066;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.4rem;
+    }
+
+    .launch-banner .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--vermelho);
+      animation: pulse-red 1.8s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse-red {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: 0.35;
+        transform: scale(0.65)
+      }
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      text-align: center;
+      max-width: 500px;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(0, 156, 59, 0.15);
+      border: 1px solid rgba(0, 156, 59, 0.35);
+      border-radius: var(--radius-full);
+      padding: 0.3rem 1rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--verde);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1.25rem;
+    }
+
+    .badge::before {
+      content: '●';
+      font-size: 7px;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: 0.25
+      }
+    }
+
+    .hero-headline {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 10vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .hero-headline .accent-green {
+      color: var(--verde);
+    }
+
+    .hero-headline .accent-yellow {
+      color: var(--amarelo);
+    }
+
+    .hero-sub {
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 36ch;
+      margin: 0 auto 1.5rem;
+    }
+
+    /* ─── CUP ─── */
+    .cup-visual {
+      width: 130px;
+      height: 145px;
+      margin: 0 auto 2rem;
+      animation: float 3.5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-9px)
+      }
+    }
+
+    .cup-visual svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* ─── PERKS ─── */
+    .perks {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 2rem;
+    }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 0.45rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    /* ─── FEATURE GRID ─── */
+    .feature-grid {
+      width: 100%;
+      max-width: 440px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1rem 0.9rem;
+      position: relative;
+      overflow: hidden;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .feature-card.highlight {
+      border-color: rgba(213, 43, 30, 0.4);
+      background: linear-gradient(135deg, var(--surface) 55%, rgba(213, 43, 30, 0.08));
+    }
+
+    .feature-card.highlight::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2.5px;
+      background: linear-gradient(90deg, var(--vermelho), var(--amarelo));
+    }
+
+    .fc-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.4rem;
+      display: block;
+    }
+
+    .fc-title {
+      font-family: var(--font-display);
+      font-size: 0.95rem;
+      letter-spacing: 0.03em;
+      color: var(--text);
+      margin-bottom: 0.2rem;
+      line-height: 1.1;
+    }
+
+    .fc-subtitle {
+      font-size: 0.67rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .fc-tag {
+      display: inline-block;
+      background: rgba(213, 43, 30, 0.15);
+      border: 1px solid rgba(213, 43, 30, 0.3);
+      border-radius: var(--radius-full);
+      padding: 0.15rem 0.55rem;
+      font-size: 0.59rem;
+      font-weight: 700;
+      color: #ff7066;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.45rem;
+    }
+
+    /* ─── MAIN CARD ─── */
+    .card {
+      width: 100%;
+      max-width: 440px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--verde), var(--amarelo), var(--vermelho), var(--azul));
+    }
+
+    .card-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.3rem, 4vw, 1.8rem);
+      color: var(--text);
+      margin-bottom: 0.3rem;
+      letter-spacing: 0.03em;
+      line-height: 1.1;
+    }
+
+    .card-sub {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.55;
+    }
+
+    /* ─── FORM ─── */
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .field label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    .field-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 1rem;
+      z-index: 1;
+      color: var(--text-faint);
+      pointer-events: none;
+      transition: color var(--transition);
+    }
+
+    .field input {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem 0.75rem 2.75rem;
+      font-size: 0.95rem;
+      color: var(--text);
+      transition: border-color var(--transition), box-shadow var(--transition);
+    }
+
+    .field input::placeholder {
+      color: var(--text-faint);
+    }
+
+    .field input:focus {
+      outline: none;
+      border-color: var(--verde);
+      box-shadow: 0 0 0 3px rgba(0, 156, 59, 0.15);
+    }
+
+    .field-wrap:focus-within .field-icon {
+      color: var(--verde);
+    }
+
+    .field-error {
+      font-size: 0.72rem;
+      color: #e57373;
+      margin-top: -0.2rem;
+      display: none;
+    }
+
+    .field.has-error input {
+      border-color: rgba(229, 115, 115, 0.5);
+    }
+
+    .field.has-error .field-error {
+      display: block;
+    }
+
+    .terms {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-size: 0.75rem;
+      color: var(--text-faint);
+      line-height: 1.5;
+      cursor: pointer;
+    }
+
+    .terms input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      margin-top: 1px;
+      accent-color: var(--verde);
+      cursor: pointer;
+    }
+
+    .btn-cta {
+      width: 100%;
+      background: var(--verde);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 20px rgba(0, 156, 59, 0.4);
+    }
+
+    .btn-cta:hover {
+      background: var(--verde-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0, 156, 59, 0.5);
+    }
+
+    .btn-cta:active {
+      transform: translateY(0);
+    }
+
+    .btn-cta:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .btn-cta .spinner {
+      display: none;
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    .btn-cta.loading .spinner {
+      display: block;
+    }
+
+    .btn-cta.loading .btn-text {
+      opacity: 0.7;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    .privacy-note {
+      text-align: center;
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+    }
+
+    .social-proof {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--divider);
+    }
+
+    .avatars {
+      display: flex;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-full);
+      border: 2px solid var(--surface);
+      margin-left: -9px;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--surface-3);
+    }
+
+    .avatars .avatar:first-child {
+      margin-left: 0;
+    }
+
+    .social-text {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .social-text strong {
+      color: var(--text);
+    }
+
+    /* ─── DELIVERY STRIP ─── */
+    .delivery-strip {
+      width: 100%;
+      max-width: 440px;
+      display: flex;
+      justify-content: space-around;
+      margin-top: 1.5rem;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .d-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      text-align: center;
+      flex: 1;
+      min-width: 80px;
+    }
+
+    .d-icon {
+      font-size: 1.6rem;
+    }
+
+    .d-label {
+      font-weight: 700;
+      color: var(--text);
+      font-size: 0.73rem;
+    }
+
+    /* ─── WHATSAPP SECTION ─── */
+    #whatsapp-section {
+      display: none !important;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    #whatsapp-section.visible {
+      display: flex !important;
+      flex-direction: column;
+      animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .wa-card {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .wa-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--verde), var(--amarelo), var(--vermelho));
+    }
+
+    .wa-emoji {
+      font-size: 52px;
+      margin-bottom: 0.75rem;
+      animation: bounceIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.3);
+        opacity: 0
+      }
+
+      60% {
+        transform: scale(1.1)
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1
+      }
+    }
+
+    .wa-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 5vw, 2rem);
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      line-height: 1.1;
+    }
+
+    .wa-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .wa-sub strong {
+      color: var(--amarelo);
+    }
+
+    .wa-subscribe-box {
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(0, 156, 59, 0.06));
+      border: 1.5px solid rgba(37, 211, 102, 0.3);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      animation: glowGreen 2.5s ease-in-out 0.5s infinite;
+    }
+
+    @keyframes glowGreen {
+
+      0%,
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0)
+      }
+
+      50% {
+        box-shadow: 0 0 0 8px rgba(37, 211, 102, 0.07)
+      }
+    }
+
+    .wa-box-icon {
+      font-size: 2.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .wa-box-title {
+      font-family: var(--font-display);
+      font-size: clamp(1.1rem, 3.5vw, 1.5rem);
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .wa-box-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+
+    .wa-box-sub strong {
+      color: var(--amarelo);
+    }
+
+    .btn-whatsapp {
+      width: 100%;
+      background: #25D366;
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 1rem 1.5rem;
+      font-size: 0.95rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+      box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+    }
+
+    .btn-whatsapp:hover {
+      background: #20ba5a;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+    }
+
+    .code-pill {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--surface-3);
+      border: 1px dashed rgba(254, 223, 0, 0.35);
+      border-radius: var(--radius);
+      padding: 0.6rem 1rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .code-pill strong {
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      color: var(--amarelo);
+      letter-spacing: 0.1em;
+    }
+
+    .steps-hint {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--divider);
+      text-align: left;
+    }
+
+    .steps-hint-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-faint);
+      margin-bottom: 1rem;
+    }
+
+    .steps-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+
+    .step-num {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      background: rgba(0, 156, 59, 0.15);
+      border-radius: var(--radius-full);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--verde);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .step-text {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .step-text strong {
+      color: var(--text);
+    }
+
+    /* ─── FOOTER SOCIAL ─── */
+    .footer {
+      margin-top: 3rem;
+      text-align: center;
+      width: 100%;
+      max-width: 440px;
+    }
+
+    .footer-social {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-full);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: transform var(--transition), background var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+    }
+
+    .social-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .social-btn.instagram:hover {
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 6px 20px rgba(220, 39, 67, 0.4);
+    }
+
+    .social-btn.whatsapp:hover {
+      background: #25D366;
+      border-color: transparent;
+      color: white;
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+
+    .social-btn.tiktok:hover {
+      background: #010101;
+      border-color: #ff0050;
+      color: white;
+      box-shadow: 0 6px 20px rgba(255, 0, 80, 0.35);
+    }
+
+    .social-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--divider);
+      margin-bottom: 1rem;
+    }
+
+    .footer-links {
+      font-size: 0.7rem;
+      color: var(--text-faint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.3rem 0.75rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .footer-links a {
+      text-decoration: underline;
+      opacity: 0.6;
+      transition: opacity var(--transition);
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .footer-copy {
+      font-size: 0.65rem;
+      color: var(--text-faint);
+      opacity: 0.6;
+    }
+
+    .header,
+    .hero,
+    .perks,
+    .feature-grid,
+    .card,
+    .delivery-strip {
+      animation: fadeUp 0.5s both;
+    }
+
+    .header {
+      animation-delay: 0.05s;
+    }
+
+    .hero {
+      animation-delay: 0.15s;
+    }
+
+    .perks {
+      animation-delay: 0.20s;
+    }
+
+    .feature-grid {
+      animation-delay: 0.25s;
+    }
+
+    .card {
+      animation-delay: 0.35s;
+    }
+
+    .delivery-strip {
+      animation-delay: 0.45s;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo-area">
+        <div class="launch-banner">
+          <div class="dot"></div>
+          Lançamos em poucos dias — cadastre-se agora!
+        </div>
+        <div class="logo-wordmark">
+          <span class="c1">C</span><span class="c2">A</span><span class="c3">F</span><span
+            class="c4">É</span>&nbsp;<span class="c5">BR</span><span class="c1">A</span><span class="c6">CH</span><span
+            class="c5">IL</span><span class="c3">E</span><span class="c2">IR</span><span class="c4">O</span>
+        </div>
+        <div class="logo-tagline">Cold Brew Coffee</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="badge">🚀 Delivery disponível agora</div>
+
+      <!-- Floating Cup — proper flags -->
+      <div class="cup-visual" aria-hidden="true">
+        <svg viewBox="0 0 130 155" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- steam -->
+          <path d="M47 34 Q44 24 47 15" stroke="rgba(255,255,255,0.17)" stroke-width="1.8" stroke-linecap="round"
+            fill="none" />
+          <path d="M65 29 Q62 19 65 10" stroke="rgba(255,255,255,0.12)" stroke-width="1.8" stroke-linecap="round"
+            fill="none" />
+          <!-- cup body -->
+          <path d="M22 52 L28 133 Q28 139 35 139 L95 139 Q102 139 102 133 L108 52 Z" fill="#3d1c08" stroke="#5a2e10"
+            stroke-width="1.5" />
+          <!-- coffee fill -->
+          <path d="M25 68 L30 128 Q30 134 36 134 L94 134 Q100 134 100 128 L105 68 Z" fill="#190b03" opacity="0.98" />
+          <!-- blue swirl -->
+          <ellipse cx="65" cy="103" rx="25" ry="25" fill="none" stroke="#003580" stroke-width="6" opacity="0.6" />
+          <!-- green wave -->
+          <path d="M24 86 Q44 78 65 89 Q86 100 106 86" fill="none" stroke="#009c3b" stroke-width="2.5"
+            stroke-linecap="round" opacity="0.65" />
+          <!-- coffee bean -->
+          <ellipse cx="65" cy="103" rx="13" ry="13" fill="#6b3a1f" />
+          <path d="M65 90 Q65 103 65 116" stroke="#190b03" stroke-width="2.2" stroke-linecap="round" />
+          <!-- ice cubes -->
+          <rect x="37" y="38" width="20" height="20" rx="4" fill="rgba(185,228,248,0.55)"
+            stroke="rgba(255,255,255,0.45)" stroke-width="1.3" />
+          <rect x="64" y="33" width="20" height="20" rx="4" fill="rgba(185,228,248,0.45)"
+            stroke="rgba(255,255,255,0.35)" stroke-width="1.2" />
+          <rect x="55" y="46" width="17" height="17" rx="3" fill="rgba(210,240,255,0.5)" stroke="rgba(255,255,255,0.3)"
+            stroke-width="1" />
+          <!-- ice shine -->
+          <line x1="40" y1="41" x2="42" y2="43" stroke="rgba(255,255,255,0.6)" stroke-width="1.2"
+            stroke-linecap="round" />
+          <line x1="67" y1="36" x2="69" y2="38" stroke="rgba(255,255,255,0.5)" stroke-width="1.2"
+            stroke-linecap="round" />
+          <!-- straw -->
+          <rect x="87" y="8" width="6" height="52" rx="3" fill="white" opacity="0.88" />
+          <rect x="87" y="8" width="6" height="10" rx="3" fill="#D52B1E" />
+          <rect x="87" y="27" width="6" height="10" rx="3" fill="#D52B1E" />
+          <!-- cup rim -->
+          <rect x="20" y="48" width="90" height="8" rx="4" fill="#5a2e10" stroke="#7a3e14" stroke-width="1" />
+
+          <!-- ══ CHILE FLAG ══ -->
+          <rect x="27" y="123" width="32" height="14" rx="2.5" fill="white" />
+          <!-- red stripe bottom half -->
+          <rect x="27" y="130" width="32" height="7" rx="1.5" fill="#D52B1E" />
+          <!-- blue canton top-left -->
+          <rect x="27" y="123" width="15" height="7" rx="1.5" fill="#003580" />
+          <!-- white star in canton -->
+          <text x="34.5" y="131.5" font-size="7" fill="white" text-anchor="middle" font-family="serif"
+            font-weight="bold">★</text>
+
+          <!-- ══ BRAZIL FLAG ══ -->
+          <!-- green bg -->
+          <rect x="71" y="123" width="32" height="14" rx="2.5" fill="#009c3b" />
+          <!-- yellow diamond -->
+          <polygon points="87,125.5 101,130 87,134.5 73,130" fill="#FEDF00" />
+          <!-- blue circle -->
+          <circle cx="87" cy="130" r="4.5" fill="#003580" />
+          <!-- white arc (Ordem e Progresso suggestion) -->
+          <path d="M83,130 Q87,127.5 91,130" stroke="white" stroke-width="1" fill="none" stroke-linecap="round" />
+          <!-- tiny stars -->
+          <circle cx="85" cy="129" r="0.7" fill="white" />
+          <circle cx="89" cy="131.5" r="0.7" fill="white" />
+          <circle cx="87" cy="127.5" r="0.6" fill="white" />
+          <circle cx="84.5" cy="132" r="0.5" fill="white" />
+          <circle cx="89.5" cy="128.5" r="0.5" fill="white" />
+
+          <!-- linking Olympic-style rings -->
+          <circle cx="57" cy="130" r="3.5" fill="none" stroke="rgba(255,215,0,0.65)" stroke-width="1.6" />
+          <circle cx="66" cy="130" r="3.5" fill="none" stroke="rgba(255,215,0,0.65)" stroke-width="1.6" />
+
+          <!-- base reflection -->
+          <path d="M34 145 Q65 151 96 145" stroke="rgba(255,255,255,0.05)" stroke-width="2.5" stroke-linecap="round"
+            fill="none" />
+        </svg>
+      </div>
+
+      <h1 class="hero-headline">
+        SEU COLD<br>
+        <span class="accent-green">BREW</span><br>
+        NA SUA <span class="accent-yellow">PORTA</span>
+      </h1>
+      <p class="hero-sub">
+        Café especial gelado, preparado com grãos premium do Brasil. Entregamos fresquinho, com o sabor intenso e suave
+        que você merece.
+      </p>
+    </div>
+
+    <!-- PERKS -->
+    <!--   <div class="perks">
+    <div class="perk">☕ Grãos especiais</div>
+    <div class="perk">🧊 Gelado na medida</div>
+    <div class="perk">🛵 Delivery rápido</div>
+    <div class="perk">🎁 1ª compra com desconto</div>
+  </div> -->
+
+    <!-- ══ FEATURE GRID ══ -->
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="fc-icon">🧊</span>
+        <div class="fc-title">Cold Brew Premium</div>
+        <div class="fc-subtitle">Extração a frio por 18h com grãos especiais do Brasil.</div>
+      </div>
+
+      <!-- ← Lanche Chileno completo -->
+      <div class="feature-card highlight">
+        <span class="fc-icon">🫓</span>
+        <div class="fc-title">Lanche Chileno</div>
+        <div class="fc-subtitle">Churrascas — massa fermentada artesanal recheada com queijo derretido e presunto.
+          Crocante por fora, cremosa por dentro.</div>
+        <span class="fc-tag">🇨🇱 Especialidade</span>
+      </div>
+
+      <div class="feature-card">
+        <span class="fc-icon">🛵</span>
+        <div class="fc-title">Entrega Rápida</div>
+        <div class="fc-subtitle">15 a 20 min após seu pedido, direto onde você está.</div>
+      </div>
+
+      <div class="feature-card">
+        <span class="fc-icon">❄️</span>
+        <div class="fc-title">Sempre Gelado</div>
+        <div class="fc-subtitle">Embalagem térmica que mantém o frescor até a última gota.</div>
+      </div>
+    </div>
+
+    <!-- MAIN FORM CARD -->
+    <div class="card" id="form-card">
+      <h2 class="card-title">Receba na sua<br>Faculdade / Cowork /<br>Trabalho agora</h2>
+      <p class="card-sub">Cadastre-se e ganhe <strong style="color:var(--amarelo)">20% OFF</strong> no seu primeiro
+        pedido. Só precisamos de alguns dados rápidos.</p>
+
+      <form class="form" id="lead-form" novalidate>
+        <!-- Nome -->
+        <div class="field" id="field-name">
+          <label for="input-name">Seu nome</label>
+          <div class="field-wrap">
+            <input type="text" id="input-name" name="name" placeholder="Como você se chama?" autocomplete="given-name"
+              required />
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+          </div>
+          <span class="field-error" id="error-name">Por favor, escreva seu nome.</span>
+        </div>
+
+        <!-- WhatsApp -->
+        <div class="field" id="field-whatsapp">
+          <label for="input-whatsapp">WhatsApp</label>
+          <div class="field-wrap">
+            <input type="tel" id="input-whatsapp" name="whatsapp" placeholder="+55 11 9 0000-0000" autocomplete="tel"
+              inputmode="tel" required />
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+          </div>
+          <span class="field-error" id="error-whatsapp">Insira um número de WhatsApp válido.</span>
+        </div>
+
+        <!-- Email -->
+        <div class="field" id="field-email">
+          <label for="input-email">E-mail</label>
+          <div class="field-wrap">
+            <input type="email" id="input-email" name="email" placeholder="seu@email.com" autocomplete="email"
+              inputmode="email" required />
+            <svg class="field-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="16" x="2" y="4" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+            </svg>
+          </div>
+          <span class="field-error" id="error-email">Insira um e-mail válido.</span>
+        </div>
+
+        <!-- Termos -->
+        <label class="terms" id="field-terms">
+          <div>
+            <div>
+              <input type="checkbox" id="terms-check" name="condições" required />
+              <span>Aceito receber comunicações do Café Brachileiro sobre pedidos, promoções e novidades.</span>
+            </div>
+            <span class="field-error" id="error-condições" style="display: none;">Aceitar os termos e condições</span>
+          </div>
+        </label>
+
+        <!-- CTA -->
+        <button type="submit" class="btn-cta" id="submit-btn">
+          <span class="btn-text">☕ Quero meu Cold Brew agora!</span>
+          <span class="spinner" aria-hidden="true"></span>
+        </button>
+
+        <p class="privacy-note">
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            aria-hidden="true">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+          Seus dados estão seguros e nunca serão vendidos.
+        </p>
+      </form>
+
+      <div class="social-proof">
+        <div class="avatars">
+          <div class="avatar">😄</div>
+          <div class="avatar">🤩</div>
+          <div class="avatar">😊</div>
+          <div class="avatar">☕</div>
+        </div>
+        <p class="social-text"><strong>+200 pessoas</strong> já se cadastraram<br>esta semana</p>
+      </div>
+    </div>
+
+    <!-- DELIVERY STRIP -->
+    <div class="delivery-strip" id="delivery-strip">
+      <div class="d-item">
+        <div class="d-icon">⚡</div>
+        <div class="d-label">Rápido</div>
+        <span>15 a 20 min após o pedido</span>
+      </div>
+      <div class="d-item">
+        <div class="d-icon">🌿</div>
+        <div class="d-label">Especial</div>
+        <span>Grãos selecionados</span>
+      </div>
+      <div class="d-item">
+        <div class="d-icon">🧊</div>
+        <div class="d-label">Sempre gelado</div>
+        <span>Embalagem térmica</span>
+      </div>
+      <div class="d-item">
+        <div class="d-icon">🇧🇷</div>
+        <div class="d-label">Brasileiro</div>
+        <span>Origem garantida</span>
+      </div>
+    </div>
+
+    <!-- ══ WHATSAPP SUBSCRIBE SECTION (appears after form submit) ══ -->
+    <div id="whatsapp-section" aria-live="polite">
+      <div class="wa-card">
+        <div class="wa-emoji">🎉</div>
+        <h2 class="wa-title">Você está na lista VIP!</h2>
+        <p class="wa-sub">
+          Só um passo final — inscreva-se no canal do WhatsApp e receba seu código de <strong>20% OFF</strong> como
+          prêmio de boas-vindas.
+        </p>
+
+        <div class="wa-subscribe-box">
+          <div class="wa-box-icon">📲</div>
+          <div class="wa-box-title">Inscreva-se no Canal<br>do WhatsApp</div>
+          <p class="wa-box-sub">
+            Ao entrar no canal, você recebe o código <strong>BRACHILEIRO20</strong> direto lá. Também te avisamos quando
+            abrirmos e sobre novas promoções!
+          </p>
+
+          <style>
+            .code-pill {
+              display: none;
+              /* oculto inicialmente */
+            }
+          </style>
+
+          <a id="whatsapp-link" href="https://whatsapp.com/channel/0029Vb87i7QGzzKPti9GX23V" target="_blank"
+            rel="noopener noreferrer" class="btn-whatsapp">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+            </svg>
+            Entrar e Pegar meu 20% OFF →
+          </a>
+
+          <div class="code-pill">
+            🎁 Código premiado:&nbsp;<strong>BRACHILEIRO20</strong>&nbsp;· válido 7 dias
+          </div>
+        </div>
+
+        <div class="steps-hint">
+          <p class="steps-hint-title">O que acontece agora?</p>
+          <div class="steps-list">
+            <div class="step-item">
+              <div class="step-num">1</div>
+              <p class="step-text"><strong>Clique acima</strong> e entre no canal do WhatsApp do Café Brachileiro.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">2</div>
+              <p class="step-text"><strong>Receba o código BRACHILEIRO20</strong> — 20% OFF garantido no primeiro
+                pedido.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">3</div>
+              <p class="step-text"><strong>Peça seu Cold Brew</strong> na Faculdade, Cowork ou Trabalho — chega em 15 a
+                20 min. ☕🧊</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <!-- Social Icons -->
+      <div class="footer-social">
+        <!-- Instagram -->
+        <a href="https://instagram.com/cafebrachileiro" target="_blank" rel="noopener noreferrer"
+          class="social-btn instagram" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+            stroke-linejoin="round">
+            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+          </svg>
+        </a>
+        <!-- WhatsApp -->
+        <a href="https://whatsapp.com/channel/0029Vb87i7QGzzKPti9GX23V" target="_blank" rel="noopener noreferrer"
+          class="social-btn whatsapp" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a9.359 9.359 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
+          </svg>
+        </a>
+        <!-- TikTok -->
+        <a href="https://tiktok.com/@cafebrachileiro" target="_blank" rel="noopener noreferrer"
+          class="social-btn tiktok" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.34 6.34 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34l-.01-8.83a8.18 8.18 0 0 0 4.78 1.52V4.56a4.85 4.85 0 0 1-1-.13z" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <span style="opacity:0.3">·</span>
+        <a href="#">Termos de Uso</a>
+        <span style="opacity:0.3">·</span>
+        <a href="mailto:contato@cafebrachileiro.com">Contato</a>
+      </div>
+      <p class="footer-copy">© 2025 Café Brachileiro · Cold Brew Coffee Delivery · 🇧🇷🇨🇱</p>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("whatsapp-link").addEventListener("click", function () {
+      document.querySelector(".code-pill").style.display = "block";
+    });
+  </script>
+
+  <script>
+    // ─── CONFIG ───
+    const WHATSAPP_URL = 'https://whatsapp.com/channel/0029Vb87i7QGzzKPti9GX23V';
+    const PROMO_CODE = 'BRACHILEIRO20';
+
+    // DOM refs
+    const form = document.getElementById('lead-form');
+    const formCard = document.getElementById('form-card');
+    const waSection = document.getElementById('whatsapp-section');
+    const submitBtn = document.getElementById('submit-btn');
+    const deliveryStrip = document.getElementById('delivery-strip');
+    const waLink = document.getElementById('whatsapp-link');
+
+    // Make sure section starts hidden
+    waSection.style.display = 'none';
+    waSection.classList.remove('visible');
+
+    // Set the real WA link
+    waLink.href = WHATSAPP_URL;
+
+    // When user clicks the WA button, open channel
+    waLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.open(WHATSAPP_URL, '_blank');
+    });
+
+    // ─── VALIDATION ───
+    function validateEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+    function validatePhone(v) { return v.replace(/\D/g, '').length >= 8; }
+
+    function setError(fieldId, errorId, show) {
+      const f = document.getElementById(fieldId);
+      const e = document.getElementById(errorId);
+      if (show) { f.classList.add('has-error'); if (e) e.style.display = 'block'; }
+      else { f.classList.remove('has-error'); if (e) e.style.display = 'none'; }
+    }
+
+    // ─── FORM SUBMIT ───
+    form.addEventListener('submit', function (evt) {
+      evt.preventDefault();
+
+      const name = document.getElementById('input-name').value.trim();
+      const whatsapp = document.getElementById('input-whatsapp').value.trim();
+      const email = document.getElementById('input-email').value.trim();
+      const terms = document.getElementById('terms-check').checked;
+      let valid = true;
+
+      if (!name) { setError('field-name', 'error-name', true); valid = false; }
+      else setError('field-name', 'error-name', false);
+
+      if (!validatePhone(whatsapp)) { setError('field-whatsapp', 'error-whatsapp', true); valid = false; }
+      else setError('field-whatsapp', 'error-whatsapp', false);
+
+      if (!validateEmail(email)) { setError('field-email', 'error-email', true); valid = false; }
+      else setError('field-email', 'error-email', false);
+
+      if (!terms) { setError('field-terms', 'error-condições', true); valid = false; }
+      else setError('field-terms', 'error-condições', false);
+
+      if (!valid) return;
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.classList.add('loading');
+
+      // Simulate async API call (1.2s)
+      setTimeout(function () {
+        formCard.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
+        formCard.style.opacity = '0';
+        formCard.style.transform = 'translateY(-16px)';
+
+        setTimeout(function () {
+          formCard.style.display = 'none';
+          deliveryStrip.style.display = 'none';
+
+          waSection.style.display = '';
+          waSection.classList.add('visible');
+
+          setTimeout(function () {
+            waSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 80);
+
+        }, 420);
+      }, 1200);
+    });
+
+    // ─── CLEAR ERRORS ON INPUT ───
+    ['input-name', 'input-whatsapp', 'input-email'].forEach(function (id) {
+      document.getElementById(id).addEventListener('input', function () {
+        this.closest('.field').classList.remove('has-error');
+      });
+    });
+
+    // Clear error when checking terms
+    document.getElementById('terms-check').addEventListener('change', function () {
+      if (this.checked) setError('field-terms', 'error-condições', false);
+    });
+  </script>
+</body>
+
+</html>
