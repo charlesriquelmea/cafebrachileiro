@@ -24,7 +24,7 @@ export async function POST(request: Request) {
     const { data, error } = await resend.emails.send({
       from: fromEmail,
       to: [mailPrimero],
-      cc: [mailSegundo, mailTercero],
+      /* cc: [mailSegundo, mailTercero], */
       subject: `Novo Lead Café Brachileiro: ${name}`,
       html: buildEmailHtml({ name, email, phone, business, challenge, lang }),
     });
