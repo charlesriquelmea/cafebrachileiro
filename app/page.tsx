@@ -10,6 +10,7 @@ export default function Home() {
   const [errors, setErrors] = useState<Record<string, boolean>>({});
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [codeClaimed, setCodeClaimed] = useState(false);
 
   const validateEmail = (v: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
   const validatePhone = (v: string) => v.replace(/\D/g, "").length >= 8;
@@ -374,6 +375,7 @@ export default function Home() {
                 href="https://whatsapp.com/channel/0029Vb87i7QGzzKPti9GX23V"
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => setCodeClaimed(true)}
                 className="w-full bg-[#25D366] text-white rounded-lg px-6 py-4 text-[0.95rem] font-bold flex items-center justify-center gap-3 transition-all duration-200 shadow-[0_4px_16px_rgba(37,211,102,0.35)] hover:bg-[#20ba5a] hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,211,102,0.45)] no-underline mb-3"
               >
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
@@ -382,9 +384,12 @@ export default function Home() {
                 Entrar e Pegar meu 20% OFF →
               </a>
 
-              <div className="flex items-center justify-center gap-2 bg-[#2e1e12] border border-dashed border-[rgba(254,223,0,0.35)] rounded-lg px-4 py-2.5 text-[0.78rem] text-[#c0a87a]">
-                🎁 Código premiado: <strong className="font-['Courier_New'] text-[0.9rem] text-[#FEDF00] tracking-wider">BRACHILEIRO20</strong> · válido 7 dias
-              </div>
+              {codeClaimed && (
+                <div className="flex items-center justify-center gap-2 bg-[#2e1e12] border border-dashed border-[rgba(254,223,0,0.35)] rounded-lg px-4 py-2.5 text-[0.78rem] text-[#c0a87a]">
+                  🎁 Código premiado: <strong className="font-['Courier_New'] text-[0.9rem] text-[#FEDF00] tracking-wider">BRACHILEIRO20</strong> · válido 7 dias
+                </div>
+              )}
+              
             </div>
 
             <div className="pt-6 border-t border-[rgba(255,215,100,0.07)] text-left">
